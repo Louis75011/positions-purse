@@ -1,52 +1,18 @@
 import React from 'react';
+import { Order } from '../services/interfaces/Purse';
 import positionsData from '../services/data/purseData.json';
-import { Position, SrdPosition, Order } from '../services/interfaces/Purse';
 import "../App.scss"
 
 const PositionsTable: React.FC = () => {
-  const positions: Position[] = positionsData.positions.map((position) => ({
-    id: position.id,
-    name: position.name,
-    ticker: position.ticker,
-    isin: position.isin,
-    quantity: position.quantity,
-    price: position.price,
-    previousPrice: position.previousPrice,
-    valuation: position.valuation,
-    previousValuation: position.previousValuation,
-    averagePrice: position.averagePrice,
-    previousAveragePrice: position.previousAveragePrice,
-    averageCost: position.averageCost,
-    previousAverageCost: position.previousAverageCost,
-    weight: position.weight,
-  }));
+  // chaque constante a en entrée un tableau de données génériques et un tableau de propriétés
+  const mapData = <T,>(data: T[], props: (keyof T)[]): Partial<T>[] =>
+    data.map((item) =>
+      props.reduce((acc, prop) => ({ ...acc, [prop]: item[prop] }), {})
+    ); // itère chaque data, reduce boucle sur chaque propriété, el ajouté en tant que propriété courante, retourne l'objet à jour
 
-  const srdPositions: SrdPosition[] = positionsData.srdPositions.map((srdPosition) => ({
-    id: srdPosition.id,
-    name: srdPosition.name,
-    ticker: srdPosition.ticker,
-    isin: srdPosition.isin,
-    quantity: srdPosition.quantity,
-    price: srdPosition.price,
-    previousPrice: srdPosition.previousPrice,
-    valuation: srdPosition.valuation,
-    previousValuation: srdPosition.previousValuation,
-    averagePrice: srdPosition.averagePrice,
-    previousAveragePrice: srdPosition.previousAveragePrice,
-    averageCost: srdPosition.averageCost,
-    previousAverageCost: srdPosition.previousAverageCost,
-    weight: srdPosition.weight,
-    borrowedAmount: srdPosition.borrowing,
-    interestRate: srdPosition.liquidation,
-  }));
-
-  const orders: Order[] = positionsData.orders.map((order) => ({
-    id: order.id,
-    positionId: order.positionId,
-    type: order.type,
-    quantity: order.quantity,
-    price: order.price,
-  }));
+  const positions = mapData(positionsData.positions, ['id', 'name', 'ticker', 'isin', 'quantity', 'price', 'previousPrice', 'valuation', 'previousValuation', 'averagePrice', 'previousAveragePrice', 'averageCost', 'previousAverageCost', 'weight',]);
+  const srdPositions = mapData(positionsData.srdPositions, ['id', 'name', 'ticker', 'isin', 'quantity', 'price', 'previousPrice', 'valuation', 'previousValuation', 'averagePrice', 'previousAveragePrice', 'averageCost', 'previousAverageCost', 'weight', 'borrowing', 'liquidation',]);
+  const orders = mapData(positionsData.orders, ['id', 'positionId', 'status', 'quantity', 'price',]) as Order[];
 
   return (
     <div>
