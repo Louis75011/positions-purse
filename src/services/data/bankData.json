@@ -1,0 +1,29 @@
+{
+    "id": 123456789,
+    "accountType": "Checking",
+    "accountNumber": "123-456-789",
+    "balance": 4500,
+    "currency": "USD",
+    "transactions": [{
+            "id": 1,
+            "date": "2022-04-01",
+            "description": "Paycheck",
+            "amount": 2000,
+            "balance": 6500
+        },
+        {
+            "id": 2,
+            "date": "2022-04-02",
+            "description": "Rent",
+            "amount": -1500,
+            "balance": 5000
+        },
+        {
+            "id": 3,
+            "date": "2022-04-05",
+            "description": "Groceries",
+            "amount": -75,
+            "balance": 4925
+        }
+    ]
+}
