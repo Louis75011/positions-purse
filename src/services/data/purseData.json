@@ -1,0 +1,107 @@
+{
+    "positions": [{
+            "id": "1",
+            "name": "Apple",
+            "ticker": "AAPL",
+            "isin": "US0378331005",
+            "quantity": 50,
+            "price": 150.0,
+            "previousPrice": 155.0,
+            "valuation": 7500.0,
+            "previousValuation": 7750.0,
+            "averagePrice": 130.0,
+            "previousAveragePrice": 135.0,
+            "averageCost": 6000.0,
+            "previousAverageCost": 6100.0,
+            "weight": 0.5
+        },
+        {
+            "id": "2",
+            "name": "Microsoft",
+            "ticker": "MSFT",
+            "isin": "US5949181045",
+            "quantity": 100,
+            "price": 300.0,
+            "previousPrice": 295.0,
+            "valuation": 30000.0,
+            "previousValuation": 29500.0,
+            "averagePrice": 280.0,
+            "previousAveragePrice": 275.0,
+            "averageCost": 28000.0,
+            "previousAverageCost": 27500.0,
+            "weight": 0.45
+        },
+        {
+            "id": "3",
+            "name": "Total",
+            "ticker": "TTE",
+            "isin": "US5949181045",
+            "quantity": 10,
+            "price": 200.0,
+            "previousPrice": 295.0,
+            "valuation": 30000.0,
+            "previousValuation": 29500.0,
+            "averagePrice": 280.0,
+            "previousAveragePrice": 275.0,
+            "averageCost": 28000.0,
+            "previousAverageCost": 27500.0,
+            "weight": 0.45
+        },
+        {
+            "id": "4",
+            "name": "Orange",
+            "ticker": "ORA",
+            "isin": "US5949181045",
+            "quantity": 200,
+            "price": 50.0,
+            "previousPrice": 295.0,
+            "valuation": 30000.0,
+            "previousValuation": 29500.0,
+            "averagePrice": 280.0,
+            "previousAveragePrice": 275.0,
+            "averageCost": 28000.0,
+            "previousAverageCost": 27500.0,
+            "weight": 0.45
+        }
+    ],
+    "srdPositions": [{
+        "id": "13",
+        "name": "Tesla",
+        "ticker": "TSLA",
+        "isin": "US88160R1014",
+        "quantity": 50,
+        "price": 900.0,
+        "previousPrice": 870.0,
+        "valuation": 45000.0,
+        "previousValuation": 43500.0,
+        "averagePrice": 850.0,
+        "previousAveragePrice": 870.0,
+        "averageCost": 42500.0,
+        "previousAverageCost": 43500.0,
+        "weight": 0.5,
+        "borrowing": 20000.0,
+        "liquidation": true
+    }],
+    "orders": [{
+            "id": "21",
+            "positionId": "1",
+            "status": "buy",
+            "quantity": 10,
+            "price": 140.0
+        },
+        {
+            "id": "22",
+            "positionId": "3",
+            "status": "sell",
+            "quantity": 20,
+            "price": 920.0
+        },
+        {
+            "id": "23",
+            "positionId": "2",
+            "status": "buy",
+            "quantity": 5,
+            "price": 290.0
+        }
+    ]
+}

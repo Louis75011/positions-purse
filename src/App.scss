@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.highlighted-title {
+  display: flex;
+  align-items: center;
+  color: #b3461b;
+  border-bottom: 5px solid #0d00ff; /* Remplacer la couleur vive de votre choix */
+  padding-right: 10px; /* Ajouter un espace entre le titre et la bordure */
+}
+
+.name-underline {
+  color: #61dafb;
+  text-decoration: underline;
+}
+
+.m20 {
+  margin: 20px;
+}

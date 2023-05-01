@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from "./components/Home.tsx";
+import Home from "./components/Purse.tsx";
+// import Home from "./components/Bank.tsx";
 import './App.scss';
 
 function App() {
