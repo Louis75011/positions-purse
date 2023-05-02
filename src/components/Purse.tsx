@@ -1,21 +1,79 @@
-import React from 'react';
-import { Order } from '../services/interfaces/Purse';
+import React, { useState } from 'react';
+import { Order, Position } from '../services/interfaces/Purse';
 import positionsData from '../services/data/purseData.json';
 import "../App.scss"
 
 const PositionsTable: React.FC = () => {
+  const [sortOrder, setSortOrder] = useState<any | number>('asc');
+  const [sortedBy, setSortedBy] = useState<any | number>('name');
   // chaque constante a en entrée un tableau de données génériques et un tableau de propriétés
   const mapData = <T,>(data: T[], props: (keyof T)[]): Partial<T>[] =>
-    data.map((item) =>
-      props.reduce((acc, prop) => ({ ...acc, [prop]: item[prop] }), {})
-    ); // itère chaque data, reduce boucle sur chaque propriété, el ajouté en tant que propriété courante, retourne l'objet à jour
+  data.map((item) =>
+    props.reduce((acc, prop) => ({ ...acc, [prop]: item[prop] }), {})
+  ); // itère chaque data, reduce boucle sur chaque propriété, el ajouté en tant que propriété courante, retourne l'objet à jour
 
-  const positions = mapData(positionsData.positions, ['id', 'name', 'ticker', 'isin', 'quantity', 'price', 'previousPrice', 'valuation', 'previousValuation', 'averagePrice', 'previousAveragePrice', 'averageCost', 'previousAverageCost', 'weight',]);
+    // const mapData = <T,>(data: T[], props: (keyof T)[]): Partial<T>[] =>
+    // data.map((item) =>
+    //   props.reduce((acc, prop) => ({ ...acc, [prop]: item[prop] }), {})
+    // );
+
+
+  const positions: Position[] = mapData(positionsData.positions, [
+    'id',
+    'name',
+    'ticker',
+    'isin',
+    'quantity',
+    'price',
+    'previousPrice',
+    'valuation',
+    'previousValuation',
+    'averagePrice',
+    'previousAveragePrice',
+    'averageCost',
+    'previousAverageCost',
+    'weight',
+  ]).sort((a, b) => {
+    if (sortOrder === 'desc') {
+      return b[sortedBy]! - a[sortedBy]!;
+    }
+    return a[sortedBy]! - b[sortedBy]!;
+  }) as Position[];
+
+  const handleSortClick = (sortBy: 'name' | 'quantity' | 'price' | 'valuation') => {
+    if (sortedBy === sortBy) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortedBy(sortBy);
+      setSortOrder('asc');
+    }
+  };
+
+  // const positions = mapData(positionsData.positions, ['id', 'name', 'ticker', 'isin', 'quantity', 'price', 'previousPrice', 'valuation', 'previousValuation', 'averagePrice', 'previousAveragePrice', 'averageCost', 'previousAverageCost', 'weight',]);
   const srdPositions = mapData(positionsData.srdPositions, ['id', 'name', 'ticker', 'isin', 'quantity', 'price', 'previousPrice', 'valuation', 'previousValuation', 'averagePrice', 'previousAveragePrice', 'averageCost', 'previousAverageCost', 'weight', 'borrowing', 'liquidation',]);
   const orders = mapData(positionsData.orders, ['id', 'positionId', 'status', 'quantity', 'price',]) as Order[];
 
   return (
     <div>
+      <h2 className="highlighted-title m20">Trier par valeurs de chaque position</h2>
+      <div className="row m20">
+        <div className="col-sm-12">
+          <div className="d-flex justify-content-between mb-3">
+            <button className="btn btn-outline-secondary" onClick={() => handleSortClick('name')}>
+              Nom
+            </button>
+            <button className="btn btn-outline-secondary" onClick={() => handleSortClick('quantity')}>
+              Quantité
+            </button>
+            <button className="btn btn-outline-secondary" onClick={() => handleSortClick('price')}>
+              Cours
+            </button>
+            <button className="btn btn-outline-secondary" onClick={() => handleSortClick('valuation')}>
+              Valorisation
+            </button>
+          </div>
+        </div>
+      </div>
 
       <h2 className='highlighted-title m20'>Positions</h2>
       <div className="row m20">
